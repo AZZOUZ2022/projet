@@ -9,7 +9,7 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
-model Users {
+model users {
   id      Int      @id @default(autoincrement())
   email   String   @unique
   nom    String
@@ -20,21 +20,22 @@ model Users {
 enum Role {
   USER
   ADMIN
+  AUTHOR
 }
 model article {
   id         Int        @id @default(autoincrement())
   contenu  String   
   titre      String
   createdAt  DateTime  @default(now())
-  updatedAt   DateTime
+  updatedAt   DateTime @updatedAt
   published   Boolean
-  categorie Categories[] @relation(references: [id])
-  autre     Users     @relation(fields: [autreId], references: [id])
-  autreId   Int
+  categorie categories[] @relation(references: [id])
+  autre     users?   @relation(fields: [autreId], references: [id])
+  autreId   Int?
   commentaire commentaires[] @relation(references: [id])
   commentaireId Int
 }
-model Categories{
+model categories{
   id    Int    @id @default(autoincrement())
   nom  String
   categorie article[] @relation(references: [id]) 
