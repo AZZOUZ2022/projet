@@ -14,6 +14,15 @@ router.get('/:id', function(req, res, next) {
   const r= user ? user : 'not found'
   res.send(r);
 });
+router.delete('/:id', async (req, res)=>{
+  const auserID = req.params.id;
+const deleteduser = await prisma.user.delete({
+    where:{
+        id: Number (auserID)
+    }
+})
+res.json(deleteduser)
+})
 router.delete('/:id', (req, res)=>{
   console.log(req.params.id)
   res.send('ok')

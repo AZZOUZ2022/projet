@@ -6,12 +6,12 @@ const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient(); 
 
 router.get('/', async function(req, res, next) {
-  const commentaire =await prisma.commentaire.findMany()
-  res.json(commentaire);
+  const categorie =await prisma.categorie.findMany()
+  res.json(categorie);
 });
 router.get('/:id', function(req, res, next) {
-  const commentaire =commentaires.find((u)=> u.id === parseInt(req.params.id))
-  const r= commentaire ? commentaire : 'not found'
+  const categorie =categories.find((u)=> u.id === parseInt(req.params.id))
+  const r= categorie ? categorie : 'not found'
   res.send(r);
 });
 router.delete('/:id', (req, res)=>{
@@ -19,16 +19,16 @@ router.delete('/:id', (req, res)=>{
   res.send('ok')
 })
 router.post('/', async  (req, res)=>{
-  const commentaire = await prisma.commentaire.create({
+  const categorie = await prisma.categorie.create({
     data: req.body,
   })
-  res.json(commentaire)
+  res.json(categorie)
 })
 router.patch('/', async (req, res) => {
-  const commentaire = await prisma.commentaire.update({
+  const categorie = await prisma.categories.update({
     where: {id: req.body.id},
     data: req.body,
   })
-  res.send(commentaire)
+  res.send(categories)
 })
 module.exports = router;

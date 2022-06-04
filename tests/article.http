@@ -1,0 +1,15 @@
+get http://localhost:3000/article 
+x-send : abc
+
+###
+
+POST http://localhost:3000/article 
+Content-Type: application/json 
+
+{
+   
+}
+###
+DELETE http://localhost:3000/article/1 
+x-send : 1
+###

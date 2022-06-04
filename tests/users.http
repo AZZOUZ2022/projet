@@ -1,9 +1,10 @@
-get http://localhost:3000/users HTTP/1.1
+get http://localhost:3000/user 
 x-send : abc
 ###
 
-POST http://localhost:3000/users HTTP/1.1
+POST http://localhost:3000/user 
 Content-Type: application/json 
+
 
 {
    "email" : "abc@2022",
@@ -11,6 +12,6 @@ Content-Type: application/json
    "role":"ADMIN"
 }
 ###
-DELETE http://localhost:3000/users/1 HTTP/1.1
+DELETE http://localhost:3000/user/1 
 x-send : 1
 ###
