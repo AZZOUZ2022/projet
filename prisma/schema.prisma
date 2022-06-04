@@ -35,6 +35,7 @@ model article {
   commentaire commentaires[] @relation(references: [id])
   commentaireId Int
 }
+
 model categories{
   id    Int    @id @default(autoincrement())
   nom  String

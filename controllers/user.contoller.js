@@ -17,7 +17,9 @@ function sign_Up(req, res){
             massage:"erreur",
         });
     });
+    
 }
+
 module.exports={
     sign_Up: sign_Up
 }

@@ -29,6 +29,7 @@ router.patch('/', async (req, res) => {
     where: {id: req.body.id},
     data: req.body,
   })
+  
   res.send(categories)
 })
 module.exports = router;
