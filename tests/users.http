@@ -4,8 +4,6 @@ x-send : abc
 
 POST http://localhost:3000/user 
 Content-Type: application/json 
-
-
 {
    "email" : "abc@2022",
    "nom": "abc",

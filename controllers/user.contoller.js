@@ -19,7 +19,6 @@ function sign_Up(req, res){
     });
     
 }
-
 module.exports={
     sign_Up: sign_Up
 }

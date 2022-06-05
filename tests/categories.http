@@ -2,7 +2,6 @@ get http://localhost:3000/categorie
 x-send : abc
 ###
 
-
 POST http://localhost:3000/categorie 
 Content-Type: application/json 
 

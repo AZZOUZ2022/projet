@@ -3,7 +3,6 @@ x-send : abc
 
 ###
 
-
 POST http://localhost:3000/article 
 Content-Type: application/json 
 
