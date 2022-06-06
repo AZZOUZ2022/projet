@@ -26,6 +26,6 @@ app.use('/article', articleRouter);
 app.use('/categorie', categoriesRouter);
 app.use('/commentaires', commentairesRouter);
 
-app.listen(3000);
+
 
 module.exports = app;

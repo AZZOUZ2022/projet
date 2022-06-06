@@ -1,12 +1,14 @@
 var express = require('express');
 const { cookie } =require('express/lib/response');
 var router = express.Router();
+const bcrypt = require('bcrypt')
 
-const {PrismaClient} = require('@prisma/client')
+const {PrismaClient} = require('@prisma/client');
+const { hash } = require('bcrypt');
 const prisma = new PrismaClient(); 
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
-  const users =await prisma.user.findMany()
+  const users =await prisma.users.findMany()
   res.json(users);
 });
 router.get('/:id', function(req, res, next) {
@@ -16,25 +18,29 @@ router.get('/:id', function(req, res, next) {
 });
 router.delete('/:id', async (req, res)=>{
   const auserID = req.params.id;
-const deleteduser = await prisma.user.delete({
+const deleteduser = await prisma.users.delete({
     where:{
         id: Number (auserID)
     }
 })
 res.json(deleteduser)
 })
-router.delete('/:id', (req, res)=>{
-  console.log(req.params.id)
-  res.send('ok')
-})
+
 router.post('/', async  (req, res)=>{
-  const user = await prisma.user.create({
-    data: req.body,
+  try{
+    const sl = await bcrypt.genSalt()
+    const hashedPassword = await bcrypt.hash(res.body.password, sl)
+    console.log(sl);
+    console.log(hashedPassword)
+    const user = {nom: req.body.nom, password: hashedPassword}
+    res.push(user)
+    res.status(201).send()
+  } catch {
+    res.status(500).send()
+  }
   })
-  res.json(user)
-})
 router.patch('/', async (req, res) => {
-  const user = await prisma.user.update({
+  const user = await prisma.users.update({
     where: {id: req.body.id},
     data: req.body,
   })

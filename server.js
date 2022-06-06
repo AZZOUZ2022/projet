@@ -1,5 +1,9 @@
-const http = require('http');
-const app =require('./app');
-const port = 3000;
-const server = http.createServer(app);
-server.listen(port);
+const express = require('express');
+const app = express();
+const bcrypt = require('bcrypt')
+
+
+const users = []
+app.get('/user',(req, res)=>{
+    res.json(users)
+})
